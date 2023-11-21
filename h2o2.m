@@ -1,9 +1,9 @@
 function y = h2o2(u)
-
+%%
 gas = Solution('h2o2.yaml');
 
-p = 60.0*133.3;
-t = 770.0;
+p = 1.01325e5;
+t = 870.0;
 
 OneAtm = 1.01325e5;
 set(gas,'T', 300.0, 'P', p, 'X', 'H2:2, O2:1'); 
@@ -26,7 +26,7 @@ setHeatTransferCoeff(w, 0.02);
 
 %% 设置流量
 % sccm = 1.25;
-N = (OneAtm / pressure(gas)) * ( temperature(gas) / 273.15);
+N = (OneAtm / pressure(gas)) * (temperature(gas) / 273.15);
 vdot = u(1) * 1.0e-6/60.0 * N;  % m^3/s  PV=nRT
 mdot = density(gas) * vdot;   % kg/s
 mfc = MassFlowController;
@@ -45,7 +45,7 @@ network = ReactorNet({cstr});
 %% 迭代
 % tme = 0.0;
 % dt   = 0.1;
-% 
+
 % n = 0;
 % while tme < 300
     % n = n + 1;
